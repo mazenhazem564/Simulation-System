@@ -1,0 +1,9 @@
+# depslib dependency file v1.0
+1628625030 source:c:\users\mazen\desktop\modelling summer\assignment\simulation\main.cpp
+	<iostream>
+	"time.h"
+	<math.h>
+	<cstdlib>
+	<iomanip>
+	<random>
+

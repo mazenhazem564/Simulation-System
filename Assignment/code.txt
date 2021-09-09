@@ -1,0 +1,207 @@
+//you can test this code on the schedule example at slide 15 in this file name (CS305 System Modelling and Simulation Section #2.pdf) 
+//N.B: this file is in the containing folder
+#include <iostream>
+#include "time.h"
+#include <math.h>
+#include <cstdlib>
+#include <iomanip> //for having exact decimal points in line 119
+using namespace std;
+
+int main()
+{
+    cout<<"Student Name: Mazen Hazem Fathallah"<<endl;
+    cout<<"Student ID  : 18104084"<<endl;
+    cout<<"AAST Simulation Course"<<endl;
+    cout<<"---------------------------------------------------------------------------------------------------------"<<endl;
+    cout<<"-----------------------------------------Welcome to Simulation Mode--------------------------------------"<<endl<<endl<<endl;
+    //First Step Create a dynamic array to input your Givens
+
+    char choice;
+    int size2;
+    int *array1=new int[size2];
+    //int size3;
+    int *array2=new int[size2];
+    int *probarray=new int[size2];
+    int mod1=100;
+    int mod1total=0;
+
+    //float x=(float) rand()/RAND_MAX; //used in line 112
+    //float y; //used in line 147
+    srand(time(0)); //m3 kol run m4 hytla3ly nafs al Random numbers sawa2 fy al service b2a aw al interarrival aw 2ay random numbers h3mlaha input
+    cout<<"Enter [Service and interarrival Times] values using one of the following cases:"<<endl<<endl;
+    cout<<"a-Enter your given [Service and interarrival Times]"<<endl;
+    cout<<"b-Enter your given [Service and interarrival Times] with their Probabilities"<<endl<<endl;
+    cout<<"Choose a or b: ";
+    cin>>choice;
+    if (choice == 'a'||choice == 'A')
+        {
+            cout<<"Input size of your [interarrival and Service time] Random Numbers array: ";
+            cin>>size2;
+            cout<<endl<<endl<<"Interarrival Time Random numbers"<<endl<<endl;
+            //cout<<"\n";
+            //Using C
+            //int *array1=(int*)malloc(sizeof(int)*size2);
+            //Using C++ //line 16
+            //cout<<"Input your interarrival Random number array: "<<endl;
+            /*for(int i=0;i<size2;i++)
+            {
+            cin>>array1[i];
+            }
+            */
+            //srand(time(0)); //m3 kol run m4 hytla3ly nafs al Random numbers sawa2 fy al service b2a aw al interarrival aw 2ay random numbers h3mlaha input
+            for(int i=0;i<size2;i++)
+            {
+            //array2[i]=rand()%10000000000000000;
+            array1[i]=rand()%10;
+            }
+            cout<<"\n"<<"Here is your interarrival time Random number array: "<<endl<<endl;
+            cout<<"Your Random Numbers are: ";
+            for(int i=0;i<size2;i++)
+            {
+            cout<<array1[i]<<" ";
+            }
+            cout<<"\n\n";
+            delete[] array1;
+        //----------------------------------------------------------------------------
+        cout<<"__________________________________________________________________________________________________________"<<endl<<endl;
+        cout<<"Service Time Random numbers"<<endl;
+        //int size3;
+        //cout<<"Input size of your [Service Time] Random Numbers array: ";
+        //cin>>size3;
+        //cout<<"\n";
+        //int *array2=new int[size3];
+        /*cout<<"Input your array: "<<endl;
+        for(int i=0;i<size3;i++)
+        {
+        cin>>array2[i];
+        }
+        */
+        for(int i=0;i<size2;i++)
+        {
+        //array2[i]=rand()%10000000000000000;
+        array2[i]=rand()%10;
+        }
+        cout<<"\n"<<"Here is your Service time Random number array"<<endl<<endl;
+        cout<<"Your Random Numbers are: ";
+        for(int i=0;i<size2;i++)
+        {
+        cout<<array2[i]<<" ";
+        }
+        cout<<"\n\n";
+        delete[] array2;
+
+    }
+
+    else if(choice == 'b'||choice == 'B')
+        {
+            cout<<endl<<endl<<"Interarrival Time Random numbers"<<endl<<endl;
+            cout<<"Input size of your [interarrival and Service time] Random Numbers array: ";
+            cin>>size2;
+            cout<<"\n";
+            //srand(time(0));
+            for(int i=0;i<size2;i++)
+            {
+            array1[i]=rand()%10;
+            }
+            cout<<"\n"<<"Here is your [interarrival time] Random numbers array: "<<endl<<endl;
+            cout<<"Your Random Numbers are: ";
+            for(int i=0;i<size2;i++)
+            {
+            cout<<array1[i]<<" ";
+            }
+            cout<<"\n\n";
+            delete[] array1;
+
+            //cout<<"probability of interarrival time: "<<endl;
+            cout<<"\n"<<"Here is your [interarrival time Probability] Random numbers array: "<<endl<<endl;
+            cout<<"Your Random numbers are: ";
+
+            /*srand( (unsigned)time( NULL ) );
+            for (int i = 0; i < size2; i++)
+            {
+                cout << x<<" ";
+            }*/
+                srand( (unsigned)time( NULL ) );
+
+                for (int i = 0; i < size2; i++)
+                {
+                        std::cout << std::fixed;
+                        std::cout << std::setprecision(2);
+                        cout << (float) rand()/RAND_MAX<<" ";
+                }
+                cout<<"\n\n--------------------------------------------------------------";
+
+
+
+//________________________________________________________________________________________________
+
+
+        for(int i=0;i<size2;i++)
+            {
+
+            array2[i]=rand()%10;
+
+            probarray[i]=rand()%mod1+1;
+
+            if(i<=size2-1)
+                {
+
+                //cout<<"size2-1= "<<i;
+
+                mod1=mod1-probarray[i];
+
+                mod1total=probarray[i]+mod1total;
+
+                }
+                else{
+
+                probarray[i]=100-mod1total;
+                }
+
+
+            cout<<endl<<"-------------"<<probarray[i]<<"_______"<<mod1total<<"---------------"<<endl;
+            }
+            cout<<"\n"<<"Here is your [Service time] Random numbers array: "<<endl<<endl;
+            cout<<"Your Random Numbers are: ";
+            for(int i=0;i<size2;i++)
+            {
+            cout<<array2[i]<<" ";
+            }
+            cout<<"\n\n";
+            delete[] array2;
+
+            //cout<<"probability of Service time: "<<endl;
+            cout<<"\n"<<"Here is your [Service time Probability] Random numbers array: "<<endl<<endl;
+            cout<<"Your Random numbers are: ";
+
+            /*srand( (unsigned)time( NULL ) );
+            for (int i = 0; i < size2; i++)
+            {
+                cout << x<<" ";
+            }*/
+                srand( (unsigned)time( NULL ) );
+/*
+                for (int i = 0; i < size2; i++)
+                {
+                        std::cout << std::fixed;
+                        std::cout << std::setprecision(2);
+                        cout << (float) rand()/RAND_MAX<<" ";
+                }
+                */
+                cout<<"\n\n";
+
+        }
+
+
+
+        else{
+            cout<<endl<<endl<<"!!!!!!!!!!!!!!!!Error!!!!!!!!!!!!!!!!!!!!!"<<endl<<endl;
+            cout<<"            -------------Please Enter a or b----------"<<endl<<endl;
+        }
+
+        //--------------------------------------------------------------------------------
+        //free(array1) //in case Using C malloc in creating the dynamic size
+        system("pause");
+        return 0;
+}
+
